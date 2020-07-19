@@ -7,10 +7,15 @@ package leetcode0719;
  **/
 public class Test {
     public static void main(String[] args) {
-        char[][] grid = {{'1','0','1','1','1'},
-                {'1','0','1','0','1'},
-        {'1','1','1','0','1'}};
-        NumIslands nu = new NumIslands();
-        nu.numIslands(grid);
+        //200题测试
+//        char[][] grid = {{'1','0','1','1','1'},
+//                {'1','0','1','0','1'},
+//        {'1','1','1','0','1'}};
+//        NumIslands nu = new NumIslands();
+//        nu.numIslands(grid);
+// 84题测试
+        int[] heights = {0, 9};
+        LargestRectangleArea la = new LargestRectangleArea();
+        la.largestRectangleArea(heights);
     }
 }
