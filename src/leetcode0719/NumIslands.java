@@ -75,4 +75,41 @@ public class NumIslands {
                 return;
             }
         }
+
+    /**
+     * leetcode官方答案
+     * 直接将已访问元素置为0，不需要一个额外的内存来保存已经访问元素
+     * @param grid
+     * @return
+     */
+    public int numIslandsWithLeetCodeSolution(char[][] grid){
+        if (grid == null || grid.length == 0){
+            return 0;
+        }
+        int result = 0;
+        int xLen = grid.length;
+        int yLen = grid[0].length;
+        for (int i = 0; i < xLen; i++){
+            for (int j = 0; j < yLen; j++){
+                if (grid[i][j] == '1'){
+                    ++result;
+                    dfs1(grid, i, j);
+                }
+            }
+        }
+        return result;
     }
+
+    private void dfs1(char[][] grid, int i, int j) {
+        if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length || grid[i][j] == '0'){
+            return;
+        }
+        grid[i][j] = '0';
+        dfs1(grid, i - 1, j);
+        dfs1(grid, i + 1, j);
+        dfs1(grid, i, j - 1);
+        dfs1(grid, i, j + 1);
+    }
+
+
+}
