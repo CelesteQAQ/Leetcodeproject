@@ -9,8 +9,9 @@ import leetcode0724.Search;
  **/
 public class Test {
     public static void main(String[] args) {
-        int[][] matrix = new int[][]{{1}};
-        SearchMatrix se = new SearchMatrix();
-        se.searchMatrix(matrix, 2);
+        int[] nums = new int[]{3, 1};
+        SearchTarget se = new SearchTarget();
+        int x = se.search(nums, 3);
+        System.out.println(x);
     }
 }
