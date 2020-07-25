@@ -60,4 +60,32 @@ public class SearchTarget {
         return -1;
     }
 
+    /**
+     * 将有序无序的部分都统一起来，都是用一套模板
+     */
+    public int search_1(int[] nums, int target){
+        int start = 0;
+        int end = nums.length - 1;
+        while (start <= end){
+            int mid = start + (end - start) / 2;
+            if (nums[mid] == target){
+                return mid;
+            }
+            if (nums[mid] >= nums[start]){//左边有序,注意大于等于号，很重要
+                if (target >= nums[start] && target < nums[mid]){
+                    end = mid - 1;
+                }else {
+                    start = mid + 1;
+                }
+            }else {//右边有序
+                if (target > nums[mid] && target <= nums[end]){
+                    start = mid + 1;
+                }else {
+                    end = mid - 1;
+                }
+            }
+        }
+        return -1;
+    }
+
 }
