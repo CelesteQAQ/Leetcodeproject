@@ -7,8 +7,9 @@ package leetcode0727;
  **/
 public class Test {
     public static void main(String[] args) {
-        int[] nums = new int[]{3, 1, 1};
-        SearchTargetWithDNumber se = new SearchTargetWithDNumber();
-        se.search(nums, 1);
+        int[] nums = new int[]{4, 5, 1, 3, 2, 8};
+
+        QuickSort qs = new QuickSort();
+        qs.quickSort(nums);
      }
 }
