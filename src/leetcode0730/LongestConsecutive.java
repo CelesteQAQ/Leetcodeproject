@@ -1,6 +1,10 @@
 package leetcode0730;
 
+import leetcode0725.SearchTarget;
 import leetcode0728.MergeSort;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author: celeste
@@ -37,5 +41,37 @@ public class LongestConsecutive {
             max = Math.max(max, longest[i]);
         }
         return max;
+    }
+
+
+    /**
+     * 使用一个set将数字都保存起来，再遍历
+     * 如果当前数字的前一个数字存在，则跳过，因为后面也会遍历到
+     * 然后往后+1判断是否存在，存在就+1
+     * 选择最大值返回
+     * @param nums
+     * @return
+     */
+    public int longestConsecutiveWithLeetCode(int[] nums){
+        if (nums == null || nums.length == 0){
+            return 0;
+        }
+        Set<Integer> set = new HashSet<>();
+        for (int i : nums){
+            set.add(i);
+        }
+        int result = 0;
+        for (int num : set){
+            if (!set.contains(num - 1)){
+                int CurrentNum = num;
+                int longestCur = 1;
+                while (set.contains(CurrentNum + 1)){
+                    CurrentNum++;
+                    longestCur++;
+                }
+                result = Math.max(result, longestCur);
+            }
+        }
+        return result;
     }
 }
