@@ -50,5 +50,33 @@ public class UniquePathsWithObstacles {
         }
         return state[m - 1][n - 1];
     }
+    /**
+     * 可以使用滚动数组的方式来实现节省空间
+     * 滚动数组主要需要知道是由前面几个状态推导到当前状态，前面的都可以删掉
+     * 在这里只需要保存一个数组的大小就可以。
+     * 后面的值都是由前一个状态加上当前状态就可以了
+     */
+    public int uniquePathsWithRollingArray(int[][] obstacleGrid){
+        if (obstacleGrid[0][0] == 1){
+            return 0;
+        }
+        //数组选择大一个是因为有边界问题，直接选多一个可以不讨论边界问题，直接加
+        int[] state = new int[obstacleGrid[0].length + 1];
+        //对第一个进行初始化
+        if (obstacleGrid[0][0] == 0){
+            state[1] = 1;
+        }
+        //对第一行进行初始化，需要吗？默认是0,不需要，直接开始
+        for (int i = 0; i < obstacleGrid.length; i++){
+            for (int j = 0; j < obstacleGrid[0].length; j++){
+                if (obstacleGrid[i][j] == 1){
+                    state[j + 1] = 0;
+                }else {
+                    state[j + 1] = state[j + 1] + state[j];
+                }
+            }
+        }
+        return state[obstacleGrid[0].length];
+    }
 
 }
