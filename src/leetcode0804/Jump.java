@@ -35,4 +35,22 @@ public class Jump {
         }
         return state[len - 1];
     }
+
+    /**
+     * 贪心优化算法
+     * 首先可以到达的就是
+     * 因为确保是可以到达，所以不需要考虑无法到达的情况，肯定都是覆盖的
+     */
+    public int jump_2(int[] nums){
+        int len = nums.length;
+        int[] state = new int[len];
+        for (int i = 0; i < len; i++){
+            int idx = 0;
+            while (idx < len && idx + nums[idx] < i){
+                idx++;
+            }
+            state[i] = state[idx] + 1;
+        }
+        return state[len - 1];
+    }
 }
