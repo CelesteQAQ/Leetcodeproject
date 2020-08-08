@@ -69,4 +69,46 @@ public class MinWindow {
         }
         return true;
     }
+
+    /**
+     * 直接转换成快慢指针的问题
+     * 建立一个数组，将t的字符串数量记录下来
+     * 然后遍历整个s，遇到就减，当遇到减的数目刚刚好是t的长度（注意不能小于0）
+     * 这样就可以看看是不是最短的长度，是就当成ans记录下来，下次遇到更小的就更换
+     */
+    public String minWindow_1(String s, String t){
+        //mp记录t中字符出现的次数
+        int[] mp = new int[256];
+        for (char c : t.toCharArray()) mp[c] += 1;
+        //快慢指针
+        int start = 0, end = 0;
+        int n = s.length(), m = t.length();
+        int cnt = 0;
+        int res = -1;
+        String ans = "";
+        while (end < n) {
+            char c = s.charAt(end);
+            mp[c] -= 1;
+            //如果减去的数目大于0，就记下这个相减
+            if (mp[c] >= 0) cnt += 1;
+            //刚刚好就是t的长度
+            while (cnt == m) {
+                //如果这次的长度比最小的长度小就可以更新
+                if (res == -1 || res > end - start + 1) {
+                    ans = s.substring(start, end + 1);
+                    res = end - start + 1;
+                }
+                //左边可以右移，因为前面的字符是已经减过的，一定是小于0的
+                c = s.charAt(start);
+                mp[c] += 1;
+                //只有当加过的还是大于等于1是t里面的字符，只有每个字符还在才可以减去1继续判断长度是否最小
+                if (mp[c] >= 1) cnt -= 1;
+                start += 1;
+            }
+            //继续向右移动
+            end += 1;
+        }
+        return ans;
+
+    }
 }
