@@ -7,7 +7,9 @@ package leetcode0808;
  **/
 public class Test {
     public static void main(String[] args) {
-        GenerateTrees ge = new GenerateTrees();
-        ge.generateTrees(3);
+//        GenerateTrees ge = new GenerateTrees();
+//        ge.generateTrees(3);
+        MinWindow mi = new MinWindow();
+        mi.minWindow("cabwefgewcwaefgcf", "cae");
     }
 }
